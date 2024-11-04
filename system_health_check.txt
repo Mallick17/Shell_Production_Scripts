@@ -1,0 +1,7 @@
+System Health Check:
+---------------------
+Uptime:  17:36:37 up 4 days, 12:42,  1 user,  load average: 0.00, 0.00, 0.00
+Load Average: 0.00 0.00 0.00 1/115 25232
+Memory Usage:               total        used        free      shared  buff/cache   available
+Mem:            952          90         288           0         573         721
+Swap:             0           0           0
