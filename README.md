@@ -1,5 +1,6 @@
 # Linux Production Shell Scripts
 ## 1. File Backup Script
+
 ```sh
 #!/bin/bash
 backup_dir="/root/production_scripts"
@@ -22,4 +23,19 @@ if [ $? -eq 0 ]; then
   echo "Backup created successfully at $backup_dir."
 else
   echo "Failed to create backup."
-fi ```
+fi
+```
+
+## 2. System Monitoring Script
+```sh
+#!/bin/bash
+threshold=90
+# Monitor CPU usage and trigger alert if threshold exceeded
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1)
+if [ "$cpu_usage" -gt "$threshold" ]; then
+echo "High CPU usage detected: $cpu_usage%"
+# Add alert/notification logic here
+fi
+```
+
+## 3. 
