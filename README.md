@@ -130,6 +130,75 @@ fi
 
 ## 10. Data Cleanup Script
 ```sh
+#!/bin/bash
+directory="/root"
+
+# Remove files older than 10 days in specified directory
+find "$directory" -type f -mtime +10 -exec rm {} \;
+echo "Old files removed."
+```
+
+## 11. CPU Usage Tracker Script
+```sh
+#!/bin/bash
+output_file="cpu_usage_log.txt"
+
+# Log current CPU usage to a file with timestamp
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+echo "$(date) CPU usage: ${cpu_usage}%" >> "$output_file"
+
+echo "CPU usage logged."
+```
+
+## 12. System Information Script
+```sh
+#!/bin/bash
+output_file="system_info.txt"
+
+# Gather system information and save to a file
+echo "System Information:" > "$output_file"
+echo "-------------------" >> "$output_file"
+echo "Hostname: $(hostname)" >> "$output_file"
+echo "OS: $(uname -a)" >> "$output_file"
+echo "Memory: $(free -h)" >> "$output_file"
+echo "Disk Space: $(df -h)" >> "$output_file"
+echo "System info saved to $output_file."
+```
+
+## 13. Task Scheduler Script
+```sh
+#!/bin/bash
+scheduled_task="/root/system_information.sh"
+schedule_time="0 2 * * *"
+# Schedule a task using cron
+echo "$schedule_time $scheduled_task" | crontab -
+echo "Task scheduled successfully."
+```
+
+## 14. Disk Space Monitoring Script
+```sh
+#!/bin/bash
+threshold=90
+
+# Monitor disk usage and trigger alert if threshold exceeded
+disk_usage=$(df -h | grep "/dev/sda1" | awk '{print $5}' | cut -d'%' -f1)
+
+# Check if disk_usage is empty or not a number
+if [[ -z "$disk_usage" || ! "$disk_usage" =~ ^[0-9]+$ ]]; then
+  echo "Failed to retrieve disk usage or no disk usage data found."
+  exit 1
+fi
+
+if [ "$disk_usage" -gt "$threshold" ]; then
+  echo "High disk usage detected: $disk_usage%"
+  # Add alert/notification logic here
+fi
+```
+
+## 15.  Remote Server Backup Script
+
+
+
 
 
 
