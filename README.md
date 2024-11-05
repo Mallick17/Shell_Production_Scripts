@@ -1,7 +1,7 @@
 # Linux Production Shell Scripts
 ## 1. File Backup Script
+```sh
 #!/bin/bash
-
 backup_dir="/root/production_scripts"
 source_dir="/root"
 
@@ -22,4 +22,4 @@ if [ $? -eq 0 ]; then
   echo "Backup created successfully at $backup_dir."
 else
   echo "Failed to create backup."
-fi
+fi ```
