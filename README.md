@@ -231,9 +231,162 @@ echo "Setting up development environment..."
 echo "Development environment set up successfully."
 ```
 
-## 17. 
+## 17.  File Compression/Decompression Script()
+```sh
+#!/bin/bash
+file_to_compress="/path/to/file.txt"
 
+# Compress a file using gzip
+gzip "$file_to_compress"
+echo "File compressed: $file_to_compress.gz"
+```
 
+## 18. Database Backup Script()
+```sh
+#!/bin/bash
+database_name="your_database"
+output_file="database_backup_$(date +%Y%m%d).sql"
 
+# Perform database backup using mysqldump
+mysqldump -u username -ppassword "$database_name" > "$output_file"
+echo "Database backup created: $output_file"
+```
+
+## 19. Git Repository Updater Script
+```sh
+#!/bin/bash
+git_repo="/path/to/your/repo"
+
+# Update a Git repository
+cd "$git_repo"
+git pull origin master
+echo "Git repository updated."
+```
+
+## 20. Directory Synchronization Script()
+```sh
+#!/bin/bash
+source_dir="/path/to/source"
+destination_dir="/path/to/destination"
+
+# Synchronize directories using rsync
+rsync -avz "$source_dir" "$destination_dir"
+echo "Directories synchronized successfully."
+```
+
+## 21.  Web Server Log Analyzer Script()
+```sh
+#!/bin/bash
+log_file="/var/log/apache2/access.log"
+
+# Analyze web server log to count unique IP addresses
+awk '{print $1}' "$log_file" | sort | uniq -c | sort -nr
+echo "Web server log analyzed."
+```
+
+## 22. System Health Check Script
+```sh
+#!/bin/bash
+output_file="system_health_check.txt"
+
+# Perform system health check and save results to a file
+echo "System Health Check:" > "$output_file"
+echo "---------------------" >> "$output_file"
+echo "Uptime: $(uptime)" >> "$output_file"
+echo "Load Average: $(cat /proc/loadavg)" >> "$output_file"
+echo "Memory Usage: $(free -m)" >> "$output_file"
+echo "System health check results saved to $output_file."
+```
+
+## 23. Automated Database Cleanup Script()
+```sh
+#!/bin/bash
+database_name="your_database"
+days_to_keep=7
+
+# Clean up old database backups older than specified days
+find /path/to/database/backups -name "$database_name*.sql" -mtime
++"$days_to_keep" -exec rm {} \;
+echo "Old database backups cleaned up."
+```
+
+## 24. User Password Expiry Checker Script()
+```sh
+#!/bin/bash
+# Check password expiry for users with bash shell
+IFS=$'\n'
+for user in $(cat /etc/passwd | grep "/bin/bash" | cut -d: -f1); do
+password_expires=$(chage -l "$user" | grep "Password expires" |
+awk '{print $4}')
+echo "User: $user, Password Expires: $password_expires"
+done
+unset IFS
+```
+
+## 25.  Service Restart Script
+```sh
+#!/bin/bash
+service_name="your_service"
+
+# Restart a specified service
+sudo systemctl restart "$service_name"
+echo "Service $service_name restarted."
+```
+
+## 26.  Folder Size Checker Script
+```sh
+#!/bin/bash
+folder_path="/path/to/folder"
+
+# Check and display the size of a specified folder
+du -sh "$folder_path"
+echo "Folder size checked."
+```
+
+## 27. Backup Rotation Script()
+```sh
+#!/bin/bash
+backup_dir="/path/to/backups"
+max_backups=5
+
+# Rotate backups by deleting the oldest if more than max_backups
+while [ $(ls -1 "$backup_dir" | wc -l) -gt "$max_backups" ]; do
+oldest_backup=$(ls -1t "$backup_dir" | tail -n 1)
+rm -r "$backup_dir/$oldest_backup"
+done
+echo "Backup rotation completed."
+```
+
+## 28. Remote Script Execution Script()
+```sh
+#!/bin/bash
+remote_server="user@remote-server"
+remote_script="/path/to/remote/script.sh"
+
+# Execute a script on a remote server via SSH
+ssh "$remote_server" "bash -s" < "$remote_script"
+echo "Remote script executed."
+```sh
+```
+
+## 29. Network Interface Information Script()
+```sh
+#!/bin/bash
+network_interface="eth0"
+
+# Display network interface information
+ifconfig "$network_interface"
+echo "Network interface information displayed."
+```
+
+## 30. Random Quotes Generator Script
+```sh
+#!/bin/bash
+quotes=("Quote 1" "Quote 2" "Quote 3" "Quote 4")
+
+# Generate and display a random quote from the array
+random_index=$((RANDOM % ${#quotes[@]}))
+echo "Random Quote: ${quotes[$random_index]}"
+```
 
 
