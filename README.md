@@ -195,9 +195,43 @@ if [ "$disk_usage" -gt "$threshold" ]; then
 fi
 ```
 
-## 15.  Remote Server Backup Script
+## 15. Remote Server Backup Script(Not Executed)
+```sh
+#!/bin/bash
 
+# Define source directory and remote server details
+source_dir="/path/to/source"
+remote_server="user@remoteserver:/path/to/backup"
 
+# Check if source directory exists
+if [ ! -d "$source_dir" ]; then
+    echo "Source directory does not exist: $source_dir"
+    exit 1
+fi
+
+# Run rsync command to backup files to the remote server
+rsync -avz --progress "$source_dir" "$remote_server"
+
+# Check if rsync was successful
+if [ $? -eq 0 ]; then
+    echo "Files successfully backed up to remote server."
+else
+    echo "An error occurred during the backup."
+    exit 1
+fi
+```
+
+## 16. Environment Setup Script(Not Upto the Mark)
+```sh
+#!/bin/bash
+# Customize for your specific environment setup
+echo "Setting up development environment..."
+
+# Install necessary packages, configure settings, etc.
+echo "Development environment set up successfully."
+```
+
+## 17. 
 
 
 
